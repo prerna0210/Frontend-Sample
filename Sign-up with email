@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - KARDIA+</title>
+    <style>
+        /* Global Styles */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #bae5fb; 
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; 
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        .img-container {
+            width: 200px;
+            height: 200px;
+            overflow: hidden;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h5 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+            font-family: serif;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 15px;
+            border-radius: 10px;
+            border: none;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+
+        .link {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .link a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .link a:hover {
+            text-decoration: underline;
+        }
+
+        .plus-sign img {
+            width: 20px; 
+            height: 20px; 
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group .fa-eye, 
+        .input-group .fa-eye-slash {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <div class="img-container">
+                <img src="https://www.merillife.com/assets/images/blog/wQe218SrHyI7X0zPfDpW.jpg" alt="Heart">
+            </div>
+            <h5>KARDIA <span class="plus-sign"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPZoawJ-IHqRKOfcuAouGfSr_L2ZsIq4xfjA&usqp=CAU" alt="plus sign"></span></h5>
+            <form action="/login" method="POST" id="login-form">
+                <div class="form-group">
+                    <input type="text" name="email" id="email" placeholder="Enter E-mail/mobile no." required>
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="password" name="password" id="password" placeholder="Enter Password" required>
+                        <i class="fas fa-eye" id="togglePassword"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Login">
+                </div>
+            </form>
+            <div class="link">
+                <a href="Forgot password pg.html">Forgot Password?</a><br>
+                <a href="Sign-up email pg.html">Don't have an account? Click here to Sign Up</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://kit.fontawesome.com/your_fontawesome_kit_id.js" crossorigin="anonymous"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const loginForm = document.getElementById("login-form");
+            const togglePassword = document.getElementById('togglePassword');
+            const password = document.getElementById('password');
+            const emailInput = document.getElementById('email');
+
+            loginForm.addEventListener("submit", function(event) {
+                const email = emailInput.value;
+                const passwordValue = password.value;
+
+                // Email validation (check for a valid email format)
+                if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    alert("Please enter a valid email address!");
+                    event.preventDefault();
+                    return;
+                }
+
+                // Password validation (check for minimum length or other criteria)
+                if (passwordValue.length < 8) {
+                    alert("Password must be at least 8 characters long!");
+                    event.preventDefault();
+                    return;
+                }
+
+                // Redirect to homepage after successful login (assuming success is determined on server-side)
+                // This condition needs to be defined based on your server-side validation
+                if (/* condition for successful login */) {
+                    window.location.href = "home.html"; // Replace "home.html" with your actual homepage URL
+                }
+            });
+
+            togglePassword.addEventListener('click', function () {
+                if (password.type === 'password') {
+                    password.type = 'text';
+                    this.classList.remove('fa-eye');
+                    this.classList.add('fa-eye-slash');
+                } else {
+                    password.type = 'password';
+                    this.classList.remove('fa-eye-slash');
+                    this.classList.add('fa-eye');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
