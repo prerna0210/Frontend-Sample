@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Signup - KARDIA+</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #bae5fb;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .form-container {
+      background-color: #fff;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .img-container {
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+    }
+
+    .img-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    h5 {
+      text-align: center;
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #333;
+      font-family: serif;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    input[type="text"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 18px;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 15px;
+      border-radius: 10px;
+      border: none;
+      background-color: #3498db;
+      color: #fff;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #2980b9;
+    }
+
+    .link {
+      text-align: center;
+      margin-top: 10px;
+    }
+
+    .link a {
+      color: #3498db;
+      text-decoration: none;
+    }
+
+    .link a:hover {
+      text-decoration: underline;
+    }
+
+    .plus-sign img {
+      width: 20px;
+      height: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <script>
+  document.getElementById("signup-form").addEventListener("submit", function(event) {
+    const mobileNumberInput = document.getElementById("mobile_number");
+    const mobileNumber = mobileNumberInput.value.trim();
+
+    if (mobileNumber.length < 10) {
+      event.preventDefault(); // Prevent form submission if validation fails
+      mobileNumberInput.classList.add("error"); // Add error class for styling
+      alert("Please enter a valid mobile number (minimum 10 digits).");
+    } else {
+      mobileNumberInput.classList.remove("error"); // Remove error class on success
+    }
+  });
+</script>
+<script>
+      // Script for loading indicator
+      const submitButton = document.getElementById("submit-button");
+      const spinner = document.createElement("div"); // Create spinner element
+      spinner.classList.add("loading-spinner"); // Add CSS class for styling (CSS)
+
+      document.getElementById("signup-form").addEventListener("submit", function(event) {
+        submitButton.textContent = "Submitting..."; // Change button text
+        submitButton.disabled = true; // Disable button to prevent multiple clicks
+        submitButton.appendChild(spinner); // Append spinner to button
+
+      });
+    </script>
+    <style>
+  .loading-spinner {
+  border: 5px solid #f3f3f3; /* Border for the spinner */
+  border-radius: 50%; /* Make it a circle */
+  border-top-color: #3498db; /* Color for the spinning part */
+  width: 20px;
+  height: 20px;
+  animation: spin 1s linear infinite; /* Animation definition */
+  margin: 5px auto; /* Center the spinner within the button */
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+    </style>
+    <div class="form-container">
+      <div class="img-container">
+        <img src="https://www.merillife.com/assets/images/blog/wQe218SrHyI7X0zPfDpW.jpg" alt="Heart">
+      </div>
+      <h5>KARDIA <span class="plus-sign"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPZoawJ-IHqRKOfcuAouGfSr_L2ZsIq4xfjA&usqp=CAU" alt="plus sign"></span></h5>
+      <form action="/signup" method="POST" id="signup-form">
+        <div class="form-group">
+          <input type="tel" name="mobile_number" placeholder="Enter Mobile Number" required>
+        </div>
+        <div class="form-group">
+          <input type="password" name="password" placeholder="Enter Password" required>
+        </div>
+        <br>
+        <input type="submit" value="Sign Up">
+      </form>
+      <br>
+      <div class="link">
+                <a href="Sign-up email pg.html">Sign up with E-mail address</a>
+            </div>
+            <br>
+            <div class="link">
+                <a href="Login pg.html">Already Registered? Click here to Login</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("signup-form").addEventListener("submit", function(event) {
+  const submitButton = document.getElementById("submit-button");
+  const spinner = document.createElement("div"); // Create spinner element
+  spinner.classList.add("loading-spinner"); // Add CSS class for styling (CSS)
+
+  submitButton.textContent = "Submitting..."; // Change button text
+  submitButton.disabled = true; // Disable button to prevent multiple clicks
+  submitButton.appendChild(spinner); // Append spinner to button
+
+  // Prevent default form submission
+  event.preventDefault();
+
+  // Your existing fetch code to submit form data
+  const formData = new FormData(this);
+  fetch('/signup', {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => {
+// Handle response
+              if (response.ok) {
+                // Redirect to the home page on successful signup
+          window.location.href = "Home page.html";
+              } 
+              else {
+                alert("Error submitting form. Please try again.");
+              }
+  });
+});
+
+    </script>
+</body>
+</html>
